@@ -61,5 +61,3 @@ func TestGetAddressWrongRed(t *testing.T) {
 		"red address is invalid: cosmos1xyxs3skf3f4jfqeuv89yyaqvjc6lffavxqhc8h: decoding bech32 failed: invalid checksum (expected xqhc8g got xqhc8h)")
 	require.EqualError(t, storedGame.Validate(), err.Error())
 }
-
-//test githib
