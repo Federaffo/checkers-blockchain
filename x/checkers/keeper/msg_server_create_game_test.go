@@ -62,6 +62,7 @@ func TestCreate1GameHasSaved(t *testing.T) {
 		BeforeIndex: "-1",
 		AfterIndex:  "-1",
 		Deadline:    "0001-01-02 00:00:00 +0000 UTC",
+		Winner:      "*",
 	}, game1)
 
 }
@@ -181,6 +182,7 @@ func TestCreate3GamesHasSavedFifo(t *testing.T) {
 		BeforeIndex: "-1",
 		AfterIndex:  "2",
 		Deadline:    "0001-01-02 00:00:00 +0000 UTC",
+		Winner:      "*",
 	}, game1)
 
 	game2, found := keeper.GetStoredGame(ctx, "2")
@@ -195,6 +197,7 @@ func TestCreate3GamesHasSavedFifo(t *testing.T) {
 		BeforeIndex: "1",
 		AfterIndex:  "-1",
 		Deadline:    "0001-01-02 00:00:00 +0000 UTC",
+		Winner:      "*",
 	}, game2)
 
 	msgSrvr.CreateGame(context, &types.MsgCreateGame{
