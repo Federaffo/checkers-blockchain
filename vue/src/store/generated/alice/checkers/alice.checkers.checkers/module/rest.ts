@@ -69,11 +69,17 @@ export interface CheckersStoredGame {
 
   /** @format uint64 */
   moveCount?: string;
+  beforeIndex?: string;
+  afterIndex?: string;
+  deadline?: string;
+  winner?: string;
 }
 
 export interface CheckersSystemInfo {
   /** @format uint64 */
   nextId?: string;
+  fifoHeadIndex?: string;
+  fifoTailIndex?: string;
 }
 
 export interface ProtobufAny {

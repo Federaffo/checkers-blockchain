@@ -17,11 +17,15 @@ const (
 
 func GetStoredGame1() types.StoredGame {
 	return types.StoredGame{
-		Black: alice,
-		Red:   bob,
-		Index: "1",
-		Board: rules.New().String(),
-		Turn:  "b",
+		Black:       alice,
+		Red:         bob,
+		Index:       "1",
+		Board:       rules.New().String(),
+		Turn:        "b",
+		MoveCount:   0,
+		BeforeIndex: types.NoFifoIndex,
+		AfterIndex:  types.NoFifoIndex,
+		Deadline:    types.DeadlineLayout,
 	}
 }
 
@@ -61,3 +65,11 @@ func TestGetAddressWrongRed(t *testing.T) {
 		"red address is invalid: cosmos1xyxs3skf3f4jfqeuv89yyaqvjc6lffavxqhc8h: decoding bech32 failed: invalid checksum (expected xqhc8g got xqhc8h)")
 	require.EqualError(t, storedGame.Validate(), err.Error())
 }
+
+/*
+func TestParseDeadlineCorrect(t *testing.T) {
+	deadline, err := GetStoredGame1().GetDeadlineAsTime()
+	require.Nil(t, err)
+	require.Equal(t, time.Time(time.Date(2006, time.January, 2, 15, 4, 5, 999999999, time.UTC)), deadline)
+}
+*/

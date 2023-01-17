@@ -6,4 +6,7 @@ option go_package = "github.com/alice/checkers/x/checkers/types";
 message SystemInfo {
   uint64 nextId = 1; 
   
+      
+  string fifoHeadIndex = 2;
+  string fifoTailIndex = 3;
 }
