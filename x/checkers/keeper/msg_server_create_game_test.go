@@ -19,6 +19,7 @@ func TestCreateGame(t *testing.T) {
 		Creator: alice,
 		Black:   bob,
 		Red:     carol,
+		Wager: 45,
 	})
 
 	require.Nil(t, err)
@@ -40,6 +41,8 @@ func TestCreate1GameHasSaved(t *testing.T) {
 		Creator: alice,
 		Black:   bob,
 		Red:     carol,
+		Wager:   45,
+
 	})
 
 	systemInfo, found := keeper.GetSystemInfo(sdk.UnwrapSDKContext(context))
@@ -63,6 +66,7 @@ func TestCreate1GameHasSaved(t *testing.T) {
 		AfterIndex:  "-1",
 		Deadline:    "0001-01-02 00:00:00 +0000 UTC",
 		Winner:      "*",
+		Wager:       45,
 	}, game1)
 
 }
@@ -128,6 +132,7 @@ func TestCreate1GameEmitted(t *testing.T) {
 		Creator: alice,
 		Black:   bob,
 		Red:     carol,
+		Wager:   45,
 	})
 
 	ctx := sdk.UnwrapSDKContext(context)
@@ -142,6 +147,7 @@ func TestCreate1GameEmitted(t *testing.T) {
 			{Key: "game-index", Value: "1"},
 			{Key: "black", Value: bob},
 			{Key: "red", Value: carol},
+			{Key: "wager", Value: "45"},
 		},
 	}, event)
 }
@@ -183,6 +189,7 @@ func TestCreate3GamesHasSavedFifo(t *testing.T) {
 		AfterIndex:  "2",
 		Deadline:    "0001-01-02 00:00:00 +0000 UTC",
 		Winner:      "*",
+		Wager: 0,
 	}, game1)
 
 	game2, found := keeper.GetStoredGame(ctx, "2")
@@ -198,6 +205,7 @@ func TestCreate3GamesHasSavedFifo(t *testing.T) {
 		AfterIndex:  "-1",
 		Deadline:    "0001-01-02 00:00:00 +0000 UTC",
 		Winner:      "*",
+		Wager: 0,
 	}, game2)
 
 	msgSrvr.CreateGame(context, &types.MsgCreateGame{
